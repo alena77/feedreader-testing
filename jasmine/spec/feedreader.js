@@ -37,6 +37,13 @@ $(function() {
          */
         /* The two tests described above can be combined
          */
+        it('URL defined', function() {
+
+        });
+        it('name defined', function() {
+
+        });
+
 
     });
 
