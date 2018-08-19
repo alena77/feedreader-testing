@@ -38,10 +38,19 @@ $(function() {
         /* The two tests described above can be combined
          */
         it('URL defined', function() {
-
+            for(let instance of allFeeds){
+                expect(instance.url).toBeDefined();
+                expect(instance.url.length).not.toBe(0);
+            }
         });
-        it('name defined', function() {
 
+        /* test to check if name is defined
+         */
+        it('name defined', function() {
+            for(let instance of allFeeds){
+                expect(instance.name).toBeDefined();
+                expect(instance.name.length).not.toBe(0);
+            }
         });
 
 
