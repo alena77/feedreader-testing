@@ -1,9 +1,3 @@
-/* feedreader.js
- *
- * This is the spec file that Jasmine will read and contains
- * all of the tests that will be run against your application.
- */
-
 /* We're placing all of our tests within the $() function,
  * since some of these tests may require DOM elements. We want
  * to ensure they don't run until the DOM is ready.
@@ -53,17 +47,16 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    // TODO: Write a new test suite named "The menu"
     describe('The menu', function() {
-         /* test to check that initially menu is hidden
-         */
+
+         // test to check that initially menu is hidden
         it('is hidden', function() {
             const body = document.querySelector('body');
             expect(body.classList.contains('menu-hidden')).toBe(true);
         });
 
-        /* test to check that initially menu is hidden
-         */
+        // test to check that initially menu is hidden
         it('menue toggles on and off', function() {
             const body = document.querySelector('body');
             const menu = document.querySelector('.menu-icon-link');
@@ -73,16 +66,19 @@ $(function() {
             expect(body.classList.contains('menu-hidden')).toBe(true);
         });
 
-
     });
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    // TODO: Write a new test suite named "Initial Entries" */
     describe('Initial Entries', function() {
-        /* test that ensures when the loadFeed has at least one initial entry
-         */
+
+        // test that ensures when the loadFeed has at least one initial entry
+
+        //asynchronous function
          beforeEach(function(done){
             loadFeed(0,done);
          });
+
+         //test code below
          it('runs and completes loadFeed', function(){
             const feed= document.querySelector('.feed');
             expect(feed.children.length >0).toBe(true);
@@ -90,22 +86,22 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+    // TODO: Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function() {
         const feed = document.querySelector('.feed');
         const firstFeed=[];
 
-         /* test that ensures that content changes when loadFeed function is used
-         */
+         // test that ensures that content changes when loadFeed function is used
+
+         //asynchronous function
          beforeEach(function(done){
             loadFeed(0);
             Array.from(feed.children).forEach(function(entry){
                 firstFeed.push(entry.innerText);
             });
             loadFeed(1,done);
-
          });
-         
+         //test code below
          it('content changes', function(){
             Array.from(feed.children).forEach(function(entry,index){
                 expect(entry.innerText === firstFeed[index]).toBe(false);
