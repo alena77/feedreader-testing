@@ -1,8 +1,6 @@
-
-
 # How to download
 
-* Copy the following link into your web browser: https://github.com/alena77/Classic-arcade-game-clone
+* Copy the following link into your web browser: https://github.com/alena77/feedreader-testing.git
 * Clone or download project package
 * Open "frontend-nanodegree-feeder" folder
 * Double click "index.html" file. File will open in your default browser.
