@@ -11,6 +11,6 @@
 * Your goal is pass all tests.
 * After application/ project is modified, refresh file in your browser to see if all tests are passing.
 * If a test fails, modify application/ project to eliminate unwanted behavior.
-* Test again to insure that everything works.
+* Test again to ensure that everything works.
 
 Happy testing!
