@@ -1,45 +1,35 @@
-/* We're placing all of our tests within the $() function,
- * since some of these tests may require DOM elements. We want
- * to ensure they don't run until the DOM is ready.
- */
 $(function() {
-    /* This is our first test suite - a test suite just contains
-    * a related set of tests. This suite is all about the RSS
-    * feeds definitions, the allFeeds variable in our application.
+    /* test suit that checks if everything is defined
     */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
+        /* test to make sure that the
          * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
+         * empty.*/
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
 
-        /* The two tests described above can be combined, but should not
-        seperating makes it easy to pinpoint a possible problem
+        /* The two tests described above can be combined, but should not.
+        seperating makes it easy to pinpoint a possible problem.
          */
 
         /* test to check if url is defined
          */ 
         it('URL defined', function() {
-            for(let instance of allFeeds){
-                expect(instance.url).toBeDefined();
-                expect(instance.url.length).not.toBe(0);
+            for(let link of allFeeds){
+                expect(link.url).toBeDefined();
+                expect(link.url.length).not.toBe(0);
             }
         });
 
         /* test to check if name is defined
          */
         it('name defined', function() {
-            for(let instance of allFeeds){
-                expect(instance.name).toBeDefined();
-                expect(instance.name.length).not.toBe(0);
+            for(let link of allFeeds){
+                expect(link.name).toBeDefined();
+                expect(link.name.length).not.toBe(0);
             }
         });
 
@@ -47,7 +37,7 @@ $(function() {
     });
 
 
-    // TODO: Write a new test suite named "The menu"
+    //test suite named "The menu". It checks visibility function of menu
     describe('The menu', function() {
 
          // test to check that initially menu is hidden
@@ -68,11 +58,10 @@ $(function() {
 
     });
 
-    // TODO: Write a new test suite named "Initial Entries" */
+    // test suite named "Initial Entries". It checks that we never have empty feed
     describe('Initial Entries', function() {
 
         // test that ensures when the loadFeed has at least one initial entry
-
         //asynchronous function
          beforeEach(function(done){
             loadFeed(0,done);
@@ -80,33 +69,38 @@ $(function() {
 
          //test code below
          it('runs and completes loadFeed', function(){
-            const feed= document.querySelector('.feed');
+            const feed = document.querySelector('.feed');
             expect(feed.children.length >0).toBe(true);
          });
     });
 
 
-    // TODO: Write a new test suite named "New Feed Selection" */
+    // test suite named "New Feed Selection". This suit checks if update happens when new item is added.
     describe('New Feed Selection', function() {
-        const feed = document.querySelector('.feed');
-        const firstFeed=[];
-
          // test that ensures that content changes when loadFeed function is used
 
-         //asynchronous function
-         beforeEach(function(done){
-            loadFeed(0);
-            Array.from(feed.children).forEach(function(entry){
-                firstFeed.push(entry.innerText);
+        //define variables
+        let feedOne, feedTwo;
+        
+        //nested functions with the most inner function having a done() statement.
+        //load and retrieve feeds
+        beforeEach(function(done){
+            loadFeed(0, function(){
+                FeedOne = document.querySelector(".entry").innerText;
+
+                loadFeed(1, function(){
+                    feedTwo = document.querySelector(".entry").innerText;
+                    done();
+                });
             });
-            loadFeed(1,done);
-         });
-         //test code below
-         it('content changes', function(){
-            Array.from(feed.children).forEach(function(entry,index){
-                expect(entry.innerText === firstFeed[index]).toBe(false);
-            });
-         });
+        });
+           
+        //spec that compares two feeds 
+        it("content changes", function(){
+        	console.log(feedOne);
+            console.log(feedTwo);
+            expect(feedTwo === feedOne).not.toBe(true);
+		});
 
     });
 }());
